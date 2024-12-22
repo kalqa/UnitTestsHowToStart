@@ -1,19 +1,32 @@
 package pl.javaready;
 
-import pl.javaready.order.OrderResult;
-import pl.javaready.order.OrderService;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
-        OrderService orderService = new OrderService();
-        OrderApplication app = new OrderApplication(orderService);
-        List<String> products = new ArrayList<>();
-        products.add("laptop");
-        products.add("telefon");
-        OrderResult orderResult = app.orderProducts(products);
-        System.out.println(orderResult);
+        String magazyn = "laptop,telefon,ksiazka";
+        System.out.println("W magazynie jest: " + magazyn);
+        String zamowienieKoncowe = "";
+        String produkt = "laptop";
+        if (magazyn.contains(produkt)) {
+            zamowienieKoncowe += produkt;
+            System.out.println("jest w magazynie! Dodaje do zamowienia");
+        } else {
+            System.out.println("nie ma w magazynie");
+        }
+        produkt = "telefon";
+        if (magazyn.contains(produkt)) {
+            zamowienieKoncowe = zamowienieKoncowe + ", " + produkt;
+            System.out.println("jest w magazynie! Dodaje do zamowienia");
+        } else {
+            System.out.println("nie ma w magazynie");
+        }
+        produkt = "krzeslo";
+        if (magazyn.contains(produkt)) {
+            zamowienieKoncowe = zamowienieKoncowe + ", " + produkt;
+            System.out.println("jest w magazynie! Dodaje do zamowienia");
+        } else {
+            System.out.println("nie ma w magazynie");
+        }
+
+        System.out.println("Koncowe zamówienie to: " + zamowienieKoncowe);
     }
 }
