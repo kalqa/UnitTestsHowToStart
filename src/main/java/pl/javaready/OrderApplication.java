@@ -1,25 +1,22 @@
 package pl.javaready;
 
-import pl.javaready.order.*;
+import pl.javaready.order.Order;
+import pl.javaready.order.OrderResult;
+import pl.javaready.order.OrderService;
+import pl.javaready.order.Product;
 
 import java.util.List;
 
 class OrderApplication {
     private final OrderService orderService;
-    private final DeliveryService deliveryService;
-    private final ClientService clientService;
 
-    public OrderApplication(OrderService orderService, DeliveryService deliveryService, ClientService clientService) {
+    public OrderApplication(OrderService orderService) {
         this.orderService = orderService;
-        this.deliveryService = deliveryService;
-        this.clientService = clientService;
     }
 
-    public OrderResult makeOrder(List<Product> products, Delivery delivery, String email, String phoneNumber) {
-        Client client = clientService.register(email, phoneNumber);
-        Order order = orderService.order(client, products, delivery);
-        DeliveryResponse result = deliveryService.sendInfo(order);
-        System.out.println(result.expectedArrivalDays());
-        return new OrderResult(order.id(), result.expectedArrivalDays());
+    public OrderResult orderProducts(List<Product> products) {
+        Order order = orderService.order(products);
+        System.out.println(order.products());
+        return new OrderResult(order.id(), "Success order!");
     }
 }

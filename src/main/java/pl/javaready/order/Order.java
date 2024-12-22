@@ -7,11 +7,9 @@ import java.util.UUID;
 public record Order(
         String id,
         List<Product> products,
-        LocalDateTime date,
-        Delivery delivery,
-        Client client
+        LocalDateTime date
 ) {
-    public Order(List<Product> products, LocalDateTime date, Delivery delivery, Client client) {
-        this(UUID.randomUUID().toString(), products, date, delivery, client);
+    public Order(List<Product> products, LocalDateTime date) {
+        this(UUID.randomUUID().toString(), products, date);
     }
 }
