@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderService {
-    public Order order(List<Product> products) {
+    public Order order(List<String> products) {
         System.out.println("Order placed ");
         return new Order(products, LocalDateTime.now());
     }
